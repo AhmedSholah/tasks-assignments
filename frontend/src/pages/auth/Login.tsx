@@ -21,8 +21,8 @@ export default function Login() {
 
   const form = useForm({
     initialValues: {
-      email: "a@mail.com",
-      password: "a@mail.com",
+      email: "",
+      password: "",
     },
 
     validate: {
