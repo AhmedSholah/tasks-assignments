@@ -14,7 +14,7 @@ const updateTaskSchema = z
   .object({
     // title: z.string().min(1).optional(),
     // description: z.string().optional(),
-    status: taskStatusEnum.optional(),
+    status: taskStatusEnum,
   })
   .strict();
 

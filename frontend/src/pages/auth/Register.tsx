@@ -2,7 +2,6 @@ import {
   Anchor,
   Button,
   Center,
-  Checkbox,
   Group,
   Paper,
   PasswordInput,

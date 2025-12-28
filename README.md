@@ -283,7 +283,7 @@ Authorization: Bearer <token>
 Content-Type: application/json
 
 {
-  "status": "PENDING" | "IN_PROGRESS" | "DONE" (optional)
+  "status": "PENDING" | "IN_PROGRESS" | "DONE"
 }
 ```
 
