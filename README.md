@@ -5,6 +5,7 @@ A full-stack task management application built with React, Express, and PostgreS
 ## Tech Stack
 
 ### Frontend
+
 - **React** 19 with TypeScript
 - **Vite** - Build tool
 - **Mantine UI** - Component library
@@ -14,6 +15,7 @@ A full-stack task management application built with React, Express, and PostgreS
 - **React Router** - Navigation
 
 ### Backend
+
 - **Express** - Web framework
 - **TypeScript** - Type safety
 - **Prisma** - ORM
@@ -25,6 +27,7 @@ A full-stack task management application built with React, Express, and PostgreS
 ## Prerequisites
 
 Before you begin, ensure you have the following installed:
+
 - **Node.js** (v18 or higher)
 - **npm**
 - **PostgreSQL** database
@@ -32,6 +35,7 @@ Before you begin, ensure you have the following installed:
 ## Setup Instructions
 
 ### 1. Clone the Repository
+
 ```bash
 git clone <repository-url>
 cd assignment
@@ -40,16 +44,19 @@ cd assignment
 ### 2. Backend Setup
 
 Navigate to the backend directory:
+
 ```bash
 cd backend
 ```
 
 Install dependencies:
+
 ```bash
 npm install
 ```
 
 Create a `.env` file in the backend directory with the following variables:
+
 ```env
 # Database
 DATABASE_URL="postgresql://username:password@localhost:5432/database_name"
@@ -63,11 +70,13 @@ JWT_EXPIRES_IN=7d
 ```
 
 Generate Prisma Client:
+
 ```bash
 npx prisma generate
 ```
 
 Run database migrations:
+
 ```bash
 npx prisma migrate dev
 ```
@@ -75,16 +84,19 @@ npx prisma migrate dev
 ### 3. Frontend Setup
 
 Navigate to the frontend directory:
+
 ```bash
 cd ../frontend
 ```
 
 Install dependencies:
+
 ```bash
 npm install
 ```
 
 Create a `.env` file in the frontend directory:
+
 ```env
 VITE_API_URL=http://localhost:3000/api
 ```
@@ -98,6 +110,7 @@ You'll need to run both the backend and frontend servers.
 #### Start the Backend Server
 
 In the `backend` directory:
+
 ```bash
 npm run dev
 ```
@@ -107,6 +120,7 @@ The backend server will start on `http://localhost:3000` (or the port specified 
 #### Start the Frontend Development Server
 
 In a new terminal, navigate to the `frontend` directory:
+
 ```bash
 npm run dev
 ```
@@ -116,6 +130,7 @@ The frontend will be available at `http://localhost:5173` (default Vite port).
 ### Production Build
 
 #### Backend
+
 ```bash
 cd backend
 npm run build
@@ -123,6 +138,7 @@ npm start
 ```
 
 #### Frontend
+
 ```bash
 cd frontend
 npm run build
@@ -136,6 +152,7 @@ Base URL: `http://localhost:3000/api`
 ### Authentication Endpoints
 
 #### Register a New User
+
 ```http
 POST /api/auth/register
 Content-Type: application/json
@@ -148,6 +165,7 @@ Content-Type: application/json
 ```
 
 **Response:**
+
 ```json
 {
   "status": "success",
@@ -164,6 +182,7 @@ Content-Type: application/json
 ```
 
 #### Login
+
 ```http
 POST /api/auth/login
 Content-Type: application/json
@@ -175,6 +194,7 @@ Content-Type: application/json
 ```
 
 **Response:**
+
 ```json
 {
   "status": "success",
@@ -193,11 +213,13 @@ Content-Type: application/json
 ### Task Endpoints
 
 All task endpoints require authentication. Include the JWT token in the Authorization header:
+
 ```http
 Authorization: Bearer <your-jwt-token>
 ```
 
 #### Create a Task
+
 ```http
 POST /api/tasks
 Authorization: Bearer <token>
@@ -206,11 +228,11 @@ Content-Type: application/json
 {
   "title": "string",
   "description": "string (optional)",
-  "status": "PENDING" | "IN_PROGRESS" | "DONE" (optional, default: "PENDING")
 }
 ```
 
 **Response:**
+
 ```json
 {
   "status": "success",
@@ -228,12 +250,14 @@ Content-Type: application/json
 ```
 
 #### Get All Tasks (for authenticated user)
+
 ```http
 GET /api/tasks
 Authorization: Bearer <token>
 ```
 
 **Response:**
+
 ```json
 {
   "status": "success",
@@ -251,20 +275,20 @@ Authorization: Bearer <token>
 }
 ```
 
-#### Update a Task
+#### Update Task Status
+
 ```http
 PUT /api/tasks/:id
 Authorization: Bearer <token>
 Content-Type: application/json
 
 {
-  "title": "string (optional)",
-  "description": "string (optional)",
   "status": "PENDING" | "IN_PROGRESS" | "DONE" (optional)
 }
 ```
 
 **Response:**
+
 ```json
 {
   "status": "success",
@@ -282,12 +306,14 @@ Content-Type: application/json
 ```
 
 #### Delete a Task
+
 ```http
 DELETE /api/tasks/:id
 Authorization: Bearer <token>
 ```
 
 **Response:**
+
 ```json
 {
   "status": "success",
@@ -299,6 +325,7 @@ Authorization: Bearer <token>
 ## Database Schema
 
 ### User Model
+
 - `id` - Unique identifier (CUID)
 - `name` - User's name
 - `email` - Unique email address
@@ -308,6 +335,7 @@ Authorization: Bearer <token>
 - `updatedAt` - Last update timestamp
 
 ### Task Model
+
 - `id` - Unique identifier (CUID)
 - `title` - Task title
 - `description` - Optional task description
