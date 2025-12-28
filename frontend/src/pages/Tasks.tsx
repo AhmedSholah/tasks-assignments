@@ -14,6 +14,8 @@ import {
   Stack,
   Pagination,
   Select,
+  LoadingOverlay,
+  Box,
 } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
@@ -47,7 +49,8 @@ export default function Tasks() {
     isLoading,
     isError,
     error,
-    isPlaceholderData,
+    isFetching,
+    isPreviousData,
   } = useQuery({
     queryKey: ["tasks", page, limit],
     queryFn: async () => {
@@ -162,71 +165,78 @@ export default function Tasks() {
         <Button onClick={open}>Add Task</Button>
       </Group>
 
-      {tasks.length === 0 ? (
+      {tasks.length === 0 && !isFetching ? (
         <Text ta="center" c="dimmed" size="lg">
           No tasks found.
         </Text>
       ) : (
         <>
-          <Grid>
-            {tasks.map((task) => (
-              <Grid.Col key={task.id} span={{ base: 12, sm: 6, md: 4 }}>
-                <Card shadow="sm" padding="lg" radius="md" withBorder h="100%">
-                  <Stack justify="space-between" h="100%">
-                    <div>
-                      <Group justify="space-between" mb="xs" wrap="nowrap">
-                        <Text fw={500} truncate="end" style={{ flex: 1 }}>
-                          {task.title}
-                        </Text>
-                        <Group gap={5}>
-                          <Badge
-                            color={getStatusColor(task.status)}
-                            variant="light"
-                          >
-                            {task.status}
-                          </Badge>
+          <Box pos="relative">
+            <LoadingOverlay
+              visible={isFetching}
+              overlayProps={{ blur: 1 }}
+              loaderProps={{ size: "lg" }}
+            />
+            <Grid>
+              {tasks.map((task) => (
+                <Grid.Col key={task.id} span={{ base: 12, sm: 6, md: 4 }}>
+                  <Card shadow="sm" padding="lg" radius="md" withBorder h="100%">
+                    <Stack justify="space-between" h="100%">
+                      <div>
+                        <Group justify="space-between" mb="xs" wrap="nowrap">
+                          <Text fw={500} truncate="end" style={{ flex: 1 }}>
+                            {task.title}
+                          </Text>
+                          <Group gap={5}>
+                            <Badge
+                              color={getStatusColor(task.status)}
+                              variant="light"
+                            >
+                              {task.status}
+                            </Badge>
+                          </Group>
                         </Group>
+
+                        <Text size="sm" c="dimmed" lineClamp={3} mb="md">
+                          {task.description}
+                        </Text>
+                      </div>
+
+                      <Group justify="flex-end" gap="xs">
+                        <ActionIcon
+                          variant="light"
+                          color="blue"
+                          onClick={() => handleUpdateStatus(task)}
+                          title="Update status"
+                        >
+                          <IconEdit size={16} />
+                        </ActionIcon>
+                        <ActionIcon
+                          variant="light"
+                          color="red"
+                          onClick={() => confirmDelete(task)}
+                          loading={
+                            deleteMutation.isPending &&
+                            deleteMutation.variables === task.id
+                          }
+                          title="Delete task"
+                        >
+                          <IconTrash size={16} />
+                        </ActionIcon>
                       </Group>
-
-                      <Text size="sm" c="dimmed" lineClamp={3} mb="md">
-                        {task.description}
-                      </Text>
-                    </div>
-
-                    <Group justify="flex-end" gap="xs">
-                      <ActionIcon
-                        variant="light"
-                        color="blue"
-                        onClick={() => handleUpdateStatus(task)}
-                        title="Update status"
-                      >
-                        <IconEdit size={16} />
-                      </ActionIcon>
-                      <ActionIcon
-                        variant="light"
-                        color="red"
-                        onClick={() => confirmDelete(task)}
-                        loading={
-                          deleteMutation.isPending &&
-                          deleteMutation.variables === task.id
-                        }
-                        title="Delete task"
-                      >
-                        <IconTrash size={16} />
-                      </ActionIcon>
-                    </Group>
-                  </Stack>
-                </Card>
-              </Grid.Col>
-            ))}
-          </Grid>
+                    </Stack>
+                  </Card>
+                </Grid.Col>
+              ))}
+            </Grid>
+          </Box>
 
           <Group justify="center" mt="xl" gap="md">
             <Pagination
               total={pagination.totalPages}
               value={pagination.currentPage}
               onChange={handlePageChange}
-              disabled={isPlaceholderData}
+              disabled={isPreviousData}
             />
             <Select
               size="xs"
