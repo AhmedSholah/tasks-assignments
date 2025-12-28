@@ -28,7 +28,7 @@ A full-stack task management application built with React, Express, and PostgreS
 
 Before you begin, ensure you have the following installed:
 
-- **Node.js** (v18 or higher)
+- **Node.js**
 - **npm**
 - **PostgreSQL** database
 
