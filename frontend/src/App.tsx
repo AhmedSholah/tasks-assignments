@@ -9,6 +9,7 @@ import GuestOnlyLayout from "./layouts/GuestOnlyLayout";
 import Login from "./pages/auth/Login";
 import Register from "./pages/auth/Register";
 import Tasks from "./pages/Tasks";
+import { NothingFoundBackground } from "./pages/NotFound";
 
 function App() {
   return (
@@ -23,6 +24,9 @@ function App() {
       <Route element={<PrivateRoute />}>
         <Route path="" element={<Tasks />} />
       </Route>
+
+      {/* Wildcard route for 404 */}
+      <Route path="*" element={<NothingFoundBackground />} />
     </Routes>
   );
 }
