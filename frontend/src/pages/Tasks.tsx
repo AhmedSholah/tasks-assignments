@@ -133,7 +133,7 @@ export default function Tasks() {
   const getStatusConfig = (status?: string) => {
     switch (status) {
       case "DONE":
-        return { color: "teal", label: "Completed" };
+        return { color: "teal", label: "Done" };
       case "IN_PROGRESS":
         return { color: "blue", label: "In Progress" };
       default:
