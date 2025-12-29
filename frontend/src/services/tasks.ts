@@ -1,15 +1,5 @@
+import type { CreateTaskData, UpdateTaskStatus } from "../types/task";
 import api from "./api";
-
-export interface TaskData {
-  id: string;
-  title: string;
-  description?: string;
-  createdAt?: string;
-}
-
-export interface UpdateTaskStatus {
-  status: "PENDING" | "IN_PROGRESS" | "DONE";
-}
 
 export const getTasks = (page: number = 1, limit: number = 9) => {
   return api.get("/tasks", {
@@ -17,7 +7,7 @@ export const getTasks = (page: number = 1, limit: number = 9) => {
   });
 };
 
-export const createTask = (data: TaskData) => {
+export const createTask = (data: CreateTaskData) => {
   return api.post("/tasks", data);
 };
 

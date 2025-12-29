@@ -363,9 +363,11 @@ assignment/
 └── frontend/
     ├── src/
     │   ├── components/      # React components
+    │   ├── layouts/         # Layout wrappers
     │   ├── pages/           # Page components
-    │   ├── hooks/           # Custom hooks
-    │   └── utils/           # Utility functions
+    │   ├── services/        # API calls and services
+    │   ├── stores/          # State management
+    │   └── types/           # TypeScript types/interfaces
     └── package.json
 ```
 

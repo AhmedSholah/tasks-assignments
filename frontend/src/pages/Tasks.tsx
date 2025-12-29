@@ -23,7 +23,7 @@ import { useDisclosure } from "@mantine/hooks";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { modals } from "@mantine/modals";
 import { notifications } from "@mantine/notifications";
-import { getTasks, deleteTask, type TaskData } from "../services/tasks";
+import { getTasks, deleteTask } from "../services/tasks";
 import { AddTaskModal } from "../components/modals/AddTaskModal";
 import { UpdateStatusModal } from "../components/modals/UpdateStatusModal";
 import {
@@ -34,10 +34,7 @@ import {
 } from "@tabler/icons-react";
 import { useState, useEffect } from "react";
 import { useSearchParams } from "react-router";
-
-interface Task extends TaskData {
-  status?: "PENDING" | "IN_PROGRESS" | "DONE";
-}
+import { type Task } from "../types/task";
 
 export default function Tasks() {
   const queryClient = useQueryClient();
