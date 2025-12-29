@@ -56,8 +56,6 @@ export default function Register() {
         password: values.password,
       });
       navigate("/");
-    } catch {
-      // Error is handled in the auth store
     } finally {
       setLoading(false);
     }

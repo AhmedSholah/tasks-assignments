@@ -40,8 +40,6 @@ export default function Login() {
     try {
       await login(values);
       navigate("/");
-    } catch {
-      // Error is handled in the auth store
     } finally {
       setLoading(false);
     }
