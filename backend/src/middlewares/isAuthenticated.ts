@@ -1,8 +1,13 @@
+import type { NextFunction, Request, Response } from "express";
 import AppError from "../utils/AppError.js";
 import httpStatusText from "../utils/httpStatusText.js";
 import jwt from "jsonwebtoken";
 
-export default function isAuthenticated(req: any, res: any, next: any) {
+export default function isAuthenticated(
+  req: any,
+  res: Response,
+  next: NextFunction
+) {
   const token = req.headers.authorization?.split(" ")[1];
   if (token) {
     try {
