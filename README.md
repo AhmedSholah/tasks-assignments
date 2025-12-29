@@ -2,6 +2,9 @@
 
 A full-stack task management application built with React, Express, and PostgreSQL. The application allows users to create accounts, authenticate, and manage their personal tasks with different statuses.
 
+**Live Preview:** [https://tasks-assignments.vercel.app](https://tasks-assignments.vercel.app)
+
+
 ## Tech Stack
 
 ### Frontend
