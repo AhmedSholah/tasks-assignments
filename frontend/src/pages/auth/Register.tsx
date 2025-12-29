@@ -64,14 +64,28 @@ export default function Register() {
   };
 
   return (
-    <Box style={{ background: "linear-gradient(135deg, #eef2ff 0%, #e0e7ff 100%)" }} h="100vh">
-      <Center h="100%">
+    <Box
+      style={{
+        background: "linear-gradient(135deg, #eef2ff 0%, #e0e7ff 100%)",
+      }}
+      h="100vh"
+    >
+      <Center h="100%" mx={"xs"}>
         <Paper radius="lg" p={40} shadow="xl" withBorder maw={"380px"} w="100%">
           <Stack align="center" mb="lg">
-            <ThemeIcon size={60} radius={60} variant="gradient" gradient={{ from: 'indigo', to: 'cyan' }}>
-               <IconUserPlus size={30} />
+            <ThemeIcon
+              size={60}
+              radius={60}
+              variant="gradient"
+              gradient={{ from: "indigo", to: "cyan" }}
+            >
+              <IconUserPlus size={30} />
             </ThemeIcon>
-            <Text size="xl" fw={700} style={{ fontFamily: 'var(--font-outfit)' }}>
+            <Text
+              size="xl"
+              fw={700}
+              style={{ fontFamily: "var(--font-outfit)" }}
+            >
               Create Account
             </Text>
             <Text size="sm" c="dimmed">
@@ -122,7 +136,10 @@ export default function Register() {
                 placeholder="Confirm your password"
                 value={form.values.passwordConfirm}
                 onChange={(event) =>
-                  form.setFieldValue("passwordConfirm", event.currentTarget.value)
+                  form.setFieldValue(
+                    "passwordConfirm",
+                    event.currentTarget.value
+                  )
                 }
                 error={form.errors.passwordConfirm}
                 radius="md"
@@ -133,7 +150,13 @@ export default function Register() {
               <Anchor component={Link} to="/login" c="dimmed" size="xs">
                 Already have an account? Login
               </Anchor>
-              <Button type="submit" radius="md" loading={loading} fullWidth mt="sm">
+              <Button
+                type="submit"
+                radius="md"
+                loading={loading}
+                fullWidth
+                mt="sm"
+              >
                 Register
               </Button>
             </Group>

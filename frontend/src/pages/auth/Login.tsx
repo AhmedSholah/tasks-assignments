@@ -48,14 +48,28 @@ export default function Login() {
   };
 
   return (
-    <Box style={{ background: "linear-gradient(135deg, #eef2ff 0%, #e0e7ff 100%)" }} h="100vh">
-      <Center h="100%">
+    <Box
+      style={{
+        background: "linear-gradient(135deg, #eef2ff 0%, #e0e7ff 100%)",
+      }}
+      h="100vh"
+    >
+      <Center h="100%" mx={"xs"}>
         <Paper radius="lg" p={40} shadow="xl" withBorder maw={"380px"} w="100%">
           <Stack align="center" mb="lg">
-            <ThemeIcon size={60} radius={60} variant="gradient" gradient={{ from: 'indigo', to: 'cyan' }}>
-               <IconLogin2 size={30} />
+            <ThemeIcon
+              size={60}
+              radius={60}
+              variant="gradient"
+              gradient={{ from: "indigo", to: "cyan" }}
+            >
+              <IconLogin2 size={30} />
             </ThemeIcon>
-            <Text size="xl" fw={700} style={{ fontFamily: 'var(--font-outfit)' }}>
+            <Text
+              size="xl"
+              fw={700}
+              style={{ fontFamily: "var(--font-outfit)" }}
+            >
               Welcome Back
             </Text>
             <Text size="sm" c="dimmed">
@@ -95,7 +109,13 @@ export default function Login() {
               <Anchor component={Link} to="/register" c="dimmed" size="xs">
                 Create account
               </Anchor>
-              <Button type="submit" radius="md" loading={loading} fullWidth mt="sm">
+              <Button
+                type="submit"
+                radius="md"
+                loading={loading}
+                fullWidth
+                mt="sm"
+              >
                 Sign In
               </Button>
             </Group>
