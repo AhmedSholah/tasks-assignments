@@ -17,7 +17,6 @@ import taskRoutes from "./routes/task.routes.js";
 // Middleware
 app.use(express.json());
 app.use(cors());
-// app.use(cors({ origin: "*" }));
 
 // API routes
 app.use("/api/auth", authRoutes);

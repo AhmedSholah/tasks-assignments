@@ -1,12 +1,17 @@
 import express from "express";
+// Controllers
 import {
   createTask,
   listTasks,
   updateTask,
   deleteTask,
 } from "../controllers/task.controller.js";
+
+// Middlewares
 import validateSchema from "../middlewares/validateSchema.js";
 import isAuthenticated from "../middlewares/isAuthenticated.js";
+
+// Validation Schemas
 import {
   createTaskSchema,
   updateTaskSchema,
