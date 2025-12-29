@@ -11,12 +11,11 @@ import type { User } from "../types/user";
 interface AuthState {
   token: string | null;
   user: User | null;
-  userIsLoggedIn: () => boolean;
+  isLoggedIn: boolean;
   userData: () => User | null;
   login: (credentials: LoginCredentials) => Promise<unknown>;
   register: (data: RegisterData) => Promise<unknown>;
   logout: () => void;
-  clearUserCookies: () => void;
 }
 
 export const useAuthStore = create<AuthState>()(
@@ -24,8 +23,8 @@ export const useAuthStore = create<AuthState>()(
     (set, get) => ({
       token: null,
       user: null,
+      isLoggedIn: false,
 
-      userIsLoggedIn: () => !!get().token,
       userData: () => get().user,
 
       login: async (credentials: LoginCredentials) => {
@@ -38,6 +37,7 @@ export const useAuthStore = create<AuthState>()(
             set({
               token: data.token,
               user: data.user,
+              isLoggedIn: true,
             });
             notifications.show({
               title: "Success",
@@ -69,6 +69,7 @@ export const useAuthStore = create<AuthState>()(
             set({
               token: data.token,
               user: data.user,
+              isLoggedIn: true,
             });
             notifications.show({
               title: "Success",
@@ -91,11 +92,7 @@ export const useAuthStore = create<AuthState>()(
       },
 
       logout: () => {
-        set({ token: null, user: null });
-      },
-
-      clearUserCookies: () => {
-        set({ token: null, user: null });
+        set({ token: null, user: null, isLoggedIn: false });
       },
     }),
     {

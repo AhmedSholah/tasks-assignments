@@ -4,9 +4,9 @@ import { AppShell } from "@mantine/core";
 import { Navbar } from "../components/Navbar";
 
 export default function PrivateRoute() {
-  const userIsLoggedIn = useAuthStore((state) => state.userIsLoggedIn);
+  const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
 
-  if (!userIsLoggedIn()) return <Navigate to="/login" />;
+  if (!isLoggedIn) return <Navigate to="/login" />;
 
   return (
     <AppShell
@@ -34,4 +34,3 @@ export default function PrivateRoute() {
     </AppShell>
   );
 }
-

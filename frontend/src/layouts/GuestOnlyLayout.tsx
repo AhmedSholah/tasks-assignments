@@ -2,9 +2,9 @@ import { Navigate, Outlet } from "react-router";
 import { useAuthStore } from "../stores/authStore";
 
 export default function GuestOnlyLayout() {
-  const userIsLoggedIn = useAuthStore((state) => state.userIsLoggedIn);
+  const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
 
-  if (userIsLoggedIn()) {
+  if (isLoggedIn) {
     return <Navigate to="/" replace />;
   }
 
