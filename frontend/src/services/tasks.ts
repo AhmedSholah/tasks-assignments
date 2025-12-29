@@ -4,6 +4,7 @@ export interface TaskData {
   id: string;
   title: string;
   description?: string;
+  createdAt?: string;
 }
 
 export interface UpdateTaskStatus {

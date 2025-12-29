@@ -299,38 +299,57 @@ export default function Tasks() {
                         </div>
 
                         <Group
-                          justify="flex-end"
-                          gap={8}
+                          justify="space-between"
                           pt="sm"
                           style={{
                             borderTop: "1px solid var(--mantine-color-gray-1)",
                           }}
                         >
-                          <Tooltip label="Update Status">
-                            <ActionIcon
-                              variant="subtle"
-                              color="gray"
-                              onClick={() => handleUpdateStatus(task)}
-                              size="lg"
-                            >
-                              <IconEdit size={18} />
-                            </ActionIcon>
-                          </Tooltip>
+                          <Box>
+                            {task.createdAt && (
+                              <Tooltip label="Creation Date">
+                                <Text size="xs" c="dimmed">
+                                  {new Date(task.createdAt).toLocaleDateString(
+                                    undefined,
+                                    {
+                                      month: "short",
+                                      day: "numeric",
+                                      hour: "2-digit",
+                                      minute: "2-digit",
+                                    }
+                                  )}
+                                </Text>
+                              </Tooltip>
+                            )}
+                          </Box>
 
-                          <Tooltip label="Delete Task">
-                            <ActionIcon
-                              variant="subtle"
-                              color="red"
-                              onClick={() => confirmDelete(task)}
-                              loading={
-                                deleteMutation.isLoading &&
-                                deleteMutation.variables === task.id
-                              }
-                              size="lg"
-                            >
-                              <IconTrash size={18} />
-                            </ActionIcon>
-                          </Tooltip>
+                          <Group gap={8}>
+                            <Tooltip label="Update Status">
+                              <ActionIcon
+                                variant="subtle"
+                                color="gray"
+                                onClick={() => handleUpdateStatus(task)}
+                                size="lg"
+                              >
+                                <IconEdit size={18} />
+                              </ActionIcon>
+                            </Tooltip>
+
+                            <Tooltip label="Delete Task">
+                              <ActionIcon
+                                variant="subtle"
+                                color="red"
+                                onClick={() => confirmDelete(task)}
+                                loading={
+                                  deleteMutation.isLoading &&
+                                  deleteMutation.variables === task.id
+                                }
+                                size="lg"
+                              >
+                                <IconTrash size={18} />
+                              </ActionIcon>
+                            </Tooltip>
+                          </Group>
                         </Group>
                       </Stack>
                     </Card>
