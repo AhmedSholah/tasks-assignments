@@ -24,6 +24,20 @@ A full-stack task management application built with React, Express, and PostgreS
 - **bcryptjs** - Password hashing
 - **Zod** - Schema validation
 
+## Screenshots
+
+![Register](./screenshots/register.png)
+
+![Login](./screenshots/login.png)
+
+![Add Task](./screenshots/add-task.png)
+
+![Tasks](./screenshots/tasks.png)
+
+![Update Status](./screenshots/update-status.png)
+
+![Delete Task](./screenshots/delete-task.png)
+
 ## Prerequisites
 
 Before you begin, ensure you have the following installed:

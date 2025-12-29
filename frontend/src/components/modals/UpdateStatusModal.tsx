@@ -2,8 +2,9 @@ import { Modal, Select, Stack, Button } from "@mantine/core";
 import { useForm } from "@mantine/form";
 import { notifications } from "@mantine/notifications";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { updateTask, type UpdateTaskStatus } from "../../services/tasks";
+import { updateTask } from "../../services/tasks";
 import { useEffect } from "react";
+import type { UpdateTaskStatus } from "../../types/task";
 
 interface UpdateStatusModalProps {
   opened: boolean;
