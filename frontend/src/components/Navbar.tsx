@@ -62,7 +62,7 @@ export function Navbar() {
               }
             >
               <Group gap={10}>
-                <Box style={{ textAlign: "right" }} visibleFrom="xs">
+                <Box style={{ textAlign: "right" }}>
                   <Text fw={600} size="sm" lh={1.2}>
                     {user?.name || "User"}
                   </Text>
