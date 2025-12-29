@@ -102,6 +102,7 @@ export default function Register() {
                 }
                 error={form.errors.name}
                 radius="md"
+                withAsterisk
               />
 
               <TextInput
@@ -113,6 +114,7 @@ export default function Register() {
                 }
                 error={form.errors.email && "Invalid email"}
                 radius="md"
+                withAsterisk
               />
 
               <PasswordInput
@@ -127,6 +129,7 @@ export default function Register() {
                   "Password should include at least 8 characters"
                 }
                 radius="md"
+                withAsterisk
               />
 
               <PasswordInput
@@ -141,6 +144,7 @@ export default function Register() {
                 }
                 error={form.errors.passwordConfirm}
                 radius="md"
+                withAsterisk
               />
             </Stack>
 

@@ -86,6 +86,7 @@ export default function Login() {
                 }
                 error={form.errors.email && "Invalid email"}
                 radius="md"
+                withAsterisk
               />
 
               <PasswordInput
@@ -100,12 +101,13 @@ export default function Login() {
                   "Password should include at least 8 characters"
                 }
                 radius="md"
+                withAsterisk
               />
             </Stack>
 
             <Group justify="space-between" mt="xl">
               <Anchor component={Link} to="/register" c="dimmed" size="xs">
-                Create account
+                Don't have an account? Create one
               </Anchor>
               <Button
                 type="submit"
