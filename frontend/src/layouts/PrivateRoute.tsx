@@ -9,8 +9,10 @@ import {
   Avatar,
   UnstyledButton,
   rem,
+  ThemeIcon,
+  Box,
 } from "@mantine/core";
-import { IconLogout } from "@tabler/icons-react";
+import { IconLogout, IconChecklist } from "@tabler/icons-react";
 
 export default function PrivateRoute() {
   const userIsLoggedIn = useAuthStore((state) => state.userIsLoggedIn);
@@ -20,37 +22,81 @@ export default function PrivateRoute() {
   if (!userIsLoggedIn()) return <Navigate to="/login" />;
 
   return (
-    <AppShell header={{ height: 60 }}>
-      <AppShell.Header>
+    <AppShell
+      header={{ height: 70 }}
+      padding="md"
+      styles={{
+        main: {
+          backgroundColor: "#f8f9fa",
+        },
+      }}
+    >
+      <AppShell.Header
+        style={{
+          backgroundColor: "rgba(255, 255, 255, 0.8)",
+          backdropFilter: "blur(12px)",
+          borderBottom: "1px solid rgba(0,0,0,0.05)",
+        }}
+      >
         <Container size="lg" h="100%">
           <Group justify="space-between" h="100%">
             <UnstyledButton component={Link} to="/">
-              <Text
-                fw={700}
-                size="xl"
-                variant="gradient"
-                gradient={{ from: "blue", to: "cyan" }}
-              >
-                TaskMaster
-              </Text>
+              <Group gap="xs">
+                <ThemeIcon
+                  size="lg"
+                  variant="gradient"
+                  gradient={{ from: "indigo", to: "cyan" }}
+                  radius="md"
+                >
+                  <IconChecklist size={20} />
+                </ThemeIcon>
+                <Text
+                  fw={800}
+                  size="xl"
+                  style={{
+                    fontFamily: "var(--font-outfit)",
+                    letterSpacing: "-0.5px",
+                  }}
+                >
+                  TaskMaster
+                </Text>
+              </Group>
             </UnstyledButton>
 
-            <Menu shadow="md" width={200}>
+            <Menu
+              shadow="xl"
+              width={220}
+              withArrow
+              transitionProps={{ transition: "pop-top-right" }}
+            >
               <Menu.Target>
-                <UnstyledButton>
-                  <Group gap={7}>
+                <UnstyledButton
+                  py={4}
+                  px={8}
+                  style={{ borderRadius: "8px", transition: "background 0.2s" }}
+                  onMouseEnter={(e) =>
+                    (e.currentTarget.style.backgroundColor = "rgba(0,0,0,0.03)")
+                  }
+                  onMouseLeave={(e) =>
+                    (e.currentTarget.style.backgroundColor = "transparent")
+                  }
+                >
+                  <Group gap={10}>
+                    <Box style={{ textAlign: "right" }} visibleFrom="xs">
+                      <Text fw={600} size="sm" lh={1.2}>
+                        {user?.name || "User"}
+                      </Text>
+                    </Box>
                     <Avatar
                       src={null}
                       alt={user?.name || "User"}
-                      radius="xl"
-                      size={35}
-                      color="blue"
+                      radius="md"
+                      size={40}
+                      variant="gradient"
+                      gradient={{ from: "indigo", to: "cyan" }}
                     >
                       {user?.name?.charAt(0) || "U"}
                     </Avatar>
-                    <Text fw={500} size="sm" visibleFrom="xs">
-                      {user?.name || "User"}
-                    </Text>
                   </Group>
                 </UnstyledButton>
               </Menu.Target>
@@ -58,15 +104,18 @@ export default function PrivateRoute() {
               <Menu.Dropdown>
                 <Menu.Item disabled>
                   <Text size="xs" c="dimmed">
-                    {user?.email || "No email"}
+                    Signed in as <br />
+                    <Text span fw={600} c="dark">
+                      {user?.email || "No email"}
+                    </Text>
                   </Text>
                 </Menu.Item>
                 <Menu.Divider />
-                <Menu.Label>Actions</Menu.Label>
+                <Menu.Label>Settings</Menu.Label>
                 <Menu.Item
                   color="red"
                   leftSection={
-                    <IconLogout style={{ width: rem(14), height: rem(14) }} />
+                    <IconLogout style={{ width: rem(16), height: rem(16) }} />
                   }
                   onClick={logout}
                 >

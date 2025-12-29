@@ -4,6 +4,8 @@ import { BrowserRouter } from "react-router";
 import "./index.css";
 import App from "./App.tsx";
 // Mantine
+import { theme } from "./theme";
+// Mantine
 import { MantineProvider } from "@mantine/core";
 import { Notifications } from "@mantine/notifications";
 import { ModalsProvider } from "@mantine/modals";
@@ -13,12 +15,18 @@ import "@mantine/notifications/styles.css";
 
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false,
+    },
+  },
+});
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <BrowserRouter>
-      <MantineProvider>
+      <MantineProvider theme={theme}>
         <ModalsProvider>
           <Notifications />
           <QueryClientProvider client={queryClient}>
